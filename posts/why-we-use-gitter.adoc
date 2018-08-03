@@ -1,0 +1,51 @@
+:date: 2018-05-01
+:template: post.html
+:summary: summary text
+:author: br
+
+Why we've decided to use Gitter and you should do too
+We now have a Gitter room for talking about Gentics Mesh at https://gitter.im/gentics/mesh.
+
+In this article we take a look at other communication channels and explain why having a real time chat help us improve our open source product.
+
+Since we open sourced our headless CMS in July 2017, we have been managing feature requests and bugs on link:https://github.com/gentics/mesh[github].
+
+This was good for a while. However, ever since we opened our project to the public more and more people did want to start a discussion.
+
+Of course we are present on common channels like 
+
+* Twitter: link:https://twitter.com/genticsmesh[@genticsmesh]
+* Stackoverflow: tagged with link:https://stackoverflow.com/questions/tagged/gentics-mesh[gentics-mesh]
+* and of course on link:https://github.com/gentics/mesh[github]
+
+All these channels serve their own distinct purpose:
+
+*Twitter* is more for announcements. Messages tend to be more on a meta level.
+
+*Stackoverflow* is for practical questions. However, one has to be quite advanced in a topic to write a well informed question that will not be down voted into oblivion and closed (no worries, we will educate you and not do that).
+
+*Github* is where our project lives. Github issues are the step stones to make a better project. Again it takes some effort for someone new to the project to ask the right thing and have a look at existing issues to find what one needs.
+
+We strongly feel that the community feedback so far has provided us with awesome ideas for improvements. So being in touch with the community has turned out to be essential to build the best product. However, all the above mentioned channels have on thing in common: they are asynchronous. 
+
+Introducing a real time chat tool ...
+
+== Why Gitter?
+
+Mike Bartlett one of the Cofounders of Gitter describes its purpose as follows:
+
+"We built Gitter to help people who make software communicate better."
+
+This is our main goal - to get you, the community, involved and participate in our vision of a developer friendly headless CMS.
+
+One main difference to other chat-tools like Slack, Mattermost or Discord (there is actually a long list) is that there is 'git' in Gitter. Users can use their git or twitter accounts to login in and get going right away.
+
+Also it is open source and free - so yeay.
+
+== Wrapping it up
+* Gitter provides us and our community an free and easy to use platform to get instant feedback.
+* It integrates well with our existing workflow.
+* We look forward to hearing your thoughts and chat with you in person soon.
+
+
+See you on https://gitter.im/gentics/mesh.

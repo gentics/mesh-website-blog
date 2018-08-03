@@ -1,0 +1,37 @@
+:date: 2018-05-01
+:template: post.html
+:teaser: summary text
+:author: br
+:sidebar: false
+
+= Meet us at WeAreDevelopers Conference in Vienna
+
+APA-IT brings open source headless CMS to WeAreDevelopers Conference
+
+Last year we participated in WeAreDevelopers and had a blast. We came back with new ideas, impressions and an overall good feeling about our profession.
+
+We - Gentics Software - are a department of APA-IT the biggest news tech company in Austria.
+
+We develop web solutions powered by our own enterprise content management system (Gentics CMS). Our products power web solutions for a diverse range of customers like: Swarovski, Erste Bank, Uniqa and major eGoverment portals in Austria.
+
+= A new challenger enters the arena
+
+This year is extra special for Gentics as we will have our own booth at WeAreDevelopers, ... we do not come empty-handed
+
+Last year we introduced our own open source our headless CMS - Gentics Mesh. We are hyped to bring our baby to the big stage and cannot wait to gather feedback at the conference.
+
+What began as a side project in 2015 is headed to be the future of our company. Headless CMS or API first CMS are on the rise - new ones pop up every other week.
+
+= UX, UI ... all for u
+
+Right next to our headless CMS, we also included an open source user interface package. This helps developers build efficient and accessible applications fast. Check out Michael Bromley's talk about our initiatives and achievements to date.
+
+
+Interested? Find us at our booth, give us a "high five" and let’s talk all things web and content management.
+
+Or drop a line via gitter, twitter or stackoverflow
+
+Think you can do it better? Come and prove it: We are hiring!
+
+
+Title image via Thomas Wolf, www.foto-tw.de [CC BY-SA 3.0 de],  via Wikimedia Commons
