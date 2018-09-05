@@ -1,0 +1,30 @@
+---
+title: "Gentics Mesh: The Developer-First CMS"
+banner: developer-coffee.jpeg
+teaser: With the advent of web content management in the early 2000’s a wealth of open- and closed-source products set out to deliver the best possible tool to create and manage websites. 16 years later these products are decked-out with features to aid editors, marketers and product managers to go about their daily business as smooth as possible.
+---
+
+== Focus on the developers
+
+Somewhere along that road however one important role has moved out of focus - the developer. A CMS was a tool that helped you getting your stuff done in the beginning. Now it feels more like the load of features is getting in the way, as a lot of established systems will dictate at least one or even all of:
+
+* project architecture
+* template engine
+* script/programming language
+* development workflow
+
+While we believe that traditional CMS have contributed to the way that web development works today, we also feel that dictating too many aspects of an implementation is frustrating for developers and thus bound to generate inferior results
+
+That’s why we built Gentics Mesh: a lightweight, API-first CMS that stays out of your way and integrates easily with all the technologies that you prefer. After all, you’re the expert for your applications - so why should we force you to use a certain template engine we’ve picked.
+
+== So, how does it all work?
+
+Our API-first approach allows you to define the exact data structure you need for your project and describe it using a Schema. After that you can use our Admin UI to create contents for your project. Your frontend application will be written in your favourite programming language, based on the framework you enjoy most. It will communicate with our /nodes API in case you are writing a traditional list/detail-view-style app, or our /webroot API, if you are creating a website that’s focused on delivering contents.
+
+As opposed to a traditional CMS, all of the functionality the system has to offer is available through our REST API. There is no single case when you have to head over to the Admin UI to get something done. So everything can be scripted! Oh, and the Admin UI is fully optional too - you don’t even need to deploy it if you’re not going to use it.
+
+While REST APIs have gained wide availability in almost all popular CMS, they were added as an afterthought. Gentics Mesh is based on the idea of sole interaction via REST in a stateless manner. Furthermore we handle permissions, internationalisation and versioning (coming May 2016) for all of your contents.
+
+If you’d like to try Gentics Mesh, then head over to our Getting Started section of our documentation. We have an unlimited evaluation period for Gentics Mesh to make sure you can put it through every test you need.
+
+Photo by Maliha Mannan via link:https://unsplash.com/photos/8gn_WhKv8Ns[unsplash]

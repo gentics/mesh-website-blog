@@ -1,0 +1,40 @@
+---
+title: Data-driven Apps made easy with Vert.x and Gentics Mesh
+created: Mar 13, 2017
+author: Andrea Schauerhuber
+banner: thaddaeus-lim-40018.jpg
+summary: We recently contributed an enhancement released in Vert.x 3.4.0 which allows building template-based web apps more easily with Vert.x as part of the frontend stack together with Gentics Mesh in a headless CMS setting.
+---
+
+== This is why Vert.x is the perfect match for Gentics Mesh
+
+Vert.x is an open source framework for building reactive applications on the Java Virtual Machine. It can be used for a variety of purposes like simple network utilities, dynamic webservers, microservices and REST APIs and lets your app scale with minimal hardware.
+
+The API-first CMS Gentics Mesh uses Vert.x at its very heart to build the Gentics Mesh link:http://getmesh.io/docs/beta/raml/[REST API] endpoints and we here at Gentics simply love it.
+
+“Bring your own frontend” - as a headless CMS, Gentics Mesh focuses on delivering content through an API and allows developers create websites, apps, or any other data-driven projects with their favourite technologies.
+
+We recently showed you a few examples of how to use modern routing frameworks to build a simple product catalogue web app with Gentics Mesh:
+
+* PHP-based link:https://getmesh.io/Blog/Building%20an%20API-first%20Web%20App%20with%20Gentics%20Mesh%20and%20the%20PHP%20Microframework%20Silex[Silex]
+* Node.js based link:https://getmesh.io/Blog/Getting%20started%20with%20Express%20and%20the%20API-first%20CMS%20Gentics%20Mesh[Express]
+* and link:https://getmesh.io/Blog/How%20to%20build%20a%20website%20with%20Go%20and%20API-first%20CMS%20Gentics%20Mesh[Go].
+
+We would have loved to do this too with Vert.x and the handlebars template engine, but found that this would be quite cumbersome. So Johannes (link:https://twitter.com/Jotschi[@Jotschi]) wrote an enhancement #509 for Vert.x which has now been released as part of the new Vert.x link:http://vertx.io/blog/vert-x-3-4-0-is-released/[version 3.4.0]. Now it’s possible to easily access nested data from Vert.x’s JsonObjects within the render context of your templates. You can find out everything  about how to integrate these new possibilities in Johannes’ link:http://vertx.io/blog/data-driven-apps-made-easy-with-vert-x-3-4-0-and-headless-cms-gentics-mesh/[post Data-driven Apps made easy with Vert.x 3.4.0 and headless CMS Gentics Mesh].
+
+
+== Keen to learn more?
+
+As mentioned before, the Gentics Mesh link:https://getmesh.io/docs/beta/raml/[REST API endpoints] are built on top of Vert.x as a core component. We will soon publish a blogpost on how and why we use Vert.x in the Gentics Mesh core, explaining all the benefits comprehensively.
+
+If you are interested to learn more, feel free to link:https://twitter.com/genticsmesh[follow us on twitter (@genticsmesh)] or to link:#footer[subscribe to our newsletter].
+
+== How to use modern routing frameworks to build a simple product catalogue web app
+
+If you are interested in other modern routing frameworks, you might want to to take a look at these other posts:
+
+* link:https://getmesh.io/Blog/Building%20an%20API-first%20Web%20App%20with%20Gentics%20Mesh%20and%20the%20PHP%20Microframework%20Silex[Building an API-first Web App with Gentics Mesh and the PHP micro-framework Silex]
+* link:https://getmesh.io/Blog/Getting%20started%20with%20Express%20and%20the%20API-first%20CMS%20Gentics%20Mesh[Getting started withe Express and the API-first CMS Gentics Mesh]
+* link:https://getmesh.io/Blog/How%20to%20build%20a%20website%20with%20Go%20and%20API-first%20CMS%20Gentics%20Mesh[How to build a website with Go and API-first CMS Gentics Mesh]
+
+Image via link:https://unsplash.com/[Unsplash] by link:https://unsplash.com/@_th4d_[Thaddaeus Lim]

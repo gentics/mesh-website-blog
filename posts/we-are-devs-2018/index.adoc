@@ -1,0 +1,40 @@
+---
+title: Meet us at WeAreDevelopers Conference in Vienna
+created: 2018-05-01
+teaser: APA-IT brings open source headless CMS to WeAreDevelopers Conference
+banner: banner.jpg
+author: Bernhard Riegler
+---
+
+
+== Meet us at WeAreDevelopers Conference in Vienna
+
+APA-IT brings open source headless CMS to WeAreDevelopers Conference
+
+Last year we participated in link:https://www.wearedevelopers.com/[WeAreDevelopers] and had a blast. We came back with new ideas, impressions and an overall good feeling about our profession.
+
+We - link:https://www.gentics.com/[Gentics Software] - are a department of link:https://apa-it.at/[APA-IT] the biggest news tech company in Austria.
+
+We develop web solutions powered by our own enterprise content management system (link:https://www.gentics.com/genticscms/software_contentmanagement.de.html[Gentics CMS]). Our products power web solutions for a diverse range of customers like: Swarovski, Erste Bank, Uniqa and major eGoverment portals in Austria.
+
+== A new challenger enters the arena
+
+This year is extra special for Gentics as we will have our own booth at WeAreDevelopers, ... we do not come empty-handed
+
+Last year we introduced our own link:http://github.com/gentics/mesh[open source our headless CMS - Gentics Mesh]. We are hyped to bring our baby to the big stage and cannot wait to gather feedback at the conference.
+
+What began as a side project in 2015 is headed to be the future of our company. Headless CMS or API first CMS are on the rise - new ones pop up every other week.
+
+== UX, UI ... all for u
+
+Right next to our headless CMS, we also included an open source user interface package. This helps developers build efficient and accessible applications fast. Check out Michael Bromley's talk about our initiatives and achievements to date.
+
+
+Interested? Find us at our booth, give us a "high five" and let’s talk all things web and content management.
+
+Or drop a line via link:https://collaboration.apa.at/gitter.im/gentics/mesh[gitter], link:https://twitter.com/genticsmesh[twitter] or link:https://stackoverflow.com/questions/tagged/gentics-mesh[stackoverflow]
+
+Think you can do it better? Come and prove it: link:https://apa-it.at/Site/jobs/javascript_frontend_developer.en.html[We are hiring!]
+
+
+Title image via Thomas Wolf, link:http://www.foto-tw.de/[www.foto-tw.de] [link:https://creativecommons.org/licenses/by-sa/3.0/de/deed.en[CC BY-SA 3.0 de]],  link:https://commons.wikimedia.org/wiki/File%3ASchloss_Sch%C3%B6nbrunn_Wien_2014_(Zuschnitt_2).jpg[via Wikimedia Commons]

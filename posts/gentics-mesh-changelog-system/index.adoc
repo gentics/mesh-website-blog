@@ -1,0 +1,35 @@
+---
+title: The Gentics Mesh Changelog System
+banner: photo-1457904375453-3e1fc2fc76f4.jpg
+teaser: How are Graph Database changes managed and how can structural changes be applied to a graph database.
+author: Johannes Schüth
+created: 15-01-2017
+---
+
+In this article I'll explain how Gentics Mesh deals with structural changes to its graph database which may be needed when updating Gentics Mesh. These changes may be required due to new features or bug fixes.
+
+Gentics Mesh uses the link:http://tinkerpop.apache.org/[Tinkerpop] based Object Graph Mapping Library link:https://getmesh.io/Blog/The%20Gentics%20Mesh%20Changelog%20System[Ferma] to store vertices and edges in its graph.
+
+First it is important to define the main requirements for a changelog system. In our case we first of all did not want to add a rollback option. This drastically reduces the complexity. Other requirements were:
+
+* The change logic must independent of the version of Gentics Mesh. A graph change can't reuse Ferma ORM classes since those classes are always bound the program version and may not work with the version of the graph database that should be changes. All graph database changes are written in Java using the Tinkerpop API.
+
+* Each change must have a unique id. This prevents SCM conflicts which may otherwise occur during parallel development of multiple changes.
+
+* Changes must be executed in a specific order. Changes may depend on each other. It is therefore mandatory to execute the changes in a predefined sequence.
+
+* The software version must match the graph database version. Checks have to be added which prevent the system from startup if a change in the graph has been detected which does not have a valid counterpart in the software changes list. These situations may also occur when downgrading the software version without reverting the previously applied changes.
+
+== Changelog System
+
+The changelog system itself is very simple. The system loads a list of changes and executes each change in a dedicated transaction. A dedicated change vertex is stored for each executed change in order to be able to skip the next execution of the change. Additionally this information can later on also be used to detect changes in the graph which are not accounted for in the application logic. This way a version downgrade can be prevented.
+
+The following source files illustrate the basic concepts and structure of the changelog system in a simplified form.
+
+== Test system
+
+It is important to be able to test new changes and verify that even an older Gentics Mesh graph database version can be updated. For this reason a database dump is created for every mesh release. We use those releases in order to execute the Gentics Mesh Changelog process.
+
+A Junit variation test is ideal for such tasks. Each Gentics Mesh database dump version creates a new variation. The Maven repository's maven-metadata.xml file is parsed in order to determine all existing versions. The test will download the database dump for the specified version and extract the data in a test directory. Each testcase can now invoke the changelog system and migrate the previously extracted database.
+
+Photo by Maliha Mannan via link:https://unsplash.com/[unsplash]

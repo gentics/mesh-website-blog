@@ -1,0 +1,60 @@
+---
+title: Functional Performance Tests For Java
+banner: typing_dev.jpg
+teaser: How to implement maintainable performance tests using Docker and Java.
+author: Johannes Schüth
+created: 15-04-2017
+---
+
+
+Let's start by first defining what a functional test actually is. There seem to be multiple definitions, here is mine:
+
+> A functional test is a test which will test the exposed application features (e.g.: internal or REST API's ) with fewer or no mocks compared to unit tests. Functional tests may also interact with databases or other external services.
+
+For Gentics Mesh we already have a lot of functional tests. Performance tests help to tell whether a change or even a dependency update actually improves or degrades the service performance. The functional tests for Gentics Mesh are written using JUnit. Please keep in mind that a JUnit test must not necessarily be a unit test. In the case of Mesh we have a lot of functional tests which start up an embedded Mesh instance and invoke regular REST requests via HTTP.
+
+So let's see what kind of performance tests are common:
+
+== Load Performance Tests
+
+These tests usually test the system load performance. link:http://jmeter.apache.org/index.html[JMeter] and link:http://gatling.io/[Gatling] are tools which are commonly employed for these tests. Test situations must be created or recorded up-front. Gatling and JMeter for example are mainly used for testing HTTP APIs. There are various Jenkins CI plugins with allow you to plot neat graphs that visualize your JMeter test results. I think it is even possible to define test thresholds.
+
+== Stopwatch Performance Tests
+
+Typical stopwatch tests are tests in which you just measure the duration it takes to execute a specific task. This is a very easy method to write performance tests since you can reuse your regular functional tests.
+
+A typical Gentics Mesh stopwatch performance test in a simplified form could look like this:
+
+There are a few things that may be noteworthy:
+
+* Performance tests should contain a warm-up phase in order to smooth out test results.
+
+* It may also be interesting to test for performance degradation. Sometimes the 100th request is fast and the performance degrades slightly with each subsequent request.
+
+* Any performance test is highly hardware-specific. A stopwatch test is no different. Executing the test within your IDE on your computer may produce very different results from executing the test on your continuous integration system.
+
+* The same stopwatch test setup can also be used to find memory leaks. Using JMX it is possible to check the heap memory size. You can invoke your action multiple times and check whether the heap size exceeds a specific limit. Of course you would need to invoke a System.gc() in order to clear the heap. Please note that the System.gc() call in java is just a recommendation. The JVM may or may not execute the GC request. This makes such tests a bit tricky.
+
+Stopwatch tests can also be used to assert the performance of specific internal calls like graph database traversals or cache access speed.  
+
+While researching options for executing stopwatch performance tests I was wondering whether it is possible to execute a JUnit test remotely and start it from within my Eclipse IDE. Executing the test remotely would allow me to run the test on a dedicated server and thus the performance would always be the same since the hardware is the same. My CI would also utilize this server for executing the test. I could even setup two identical servers in order to be able to write performance tests while also execute CI tests using the other server.
+
+== Docker to the rescue
+
+It is possible to create a docker container which contains all needed test classes. Instead of executing the regular $JAVA_HOME/bin/java executable, a bash script will be invoked which creates a test image and executes the JVM within that image.
+
+I just copied my JDK 1.8 folder and replaced the regular java binary with the bash script below. In Eclipse I only had to add this modified JDK folder and invoke the test using that JDK. This way the bash script below was executed by my Eclipse IDE. Next I needed to prepare the base image. The base image needs to contain the JDK. In my case I used the the registry.office/docker-jenkins-slave:latest image which is an internal Jenkins slave docker image which we use to execute our Jenkins jobs.
+
+The bash script will split up the classpath and copy all needed files and folders to the BUILDDIR folder. After that a docker build will be invoked which create a docker image that contains all those files and folders. Then docker run will be used to execute the JVM within the image. It is important to note that your system hostname needs to be specified. The JVM process within the docker image will connect to your IDE in order to visualize the JUnit test results. Finally the build docker image is no longer needed and can be purged from the docker host.
+
+Please keep in mind that the bash script and process will most likely not work on Windows, but it should be possible to transform the Windows classpath to a classpath which Linux understands.
+
+Of course there are also some drawbacks to this solution:
+
+*  The docker container must be able to connect to your host machine in order to communicate with the Eclipse IDE.
+
+* Multiple developers would also require multiple host machines. Executing two tests on one machine may already be enough to cause some deviations in the test performance and thus trigger some assertions.
+
+* Updates to the host operating system or even a hardware replacement may also cause test deviations.
+
+Photo by link:https://unsplash.com/@albertosaure[Luis Llerena] via link:https://unsplash.com/[unsplash]

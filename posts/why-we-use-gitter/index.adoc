@@ -1,12 +1,11 @@
-:date: 2018-05-01
-:template: post.html
-:summary: summary text
-:author: br
-
-Why we've decided to use Gitter and you should do too
-We now have a Gitter room for talking about Gentics Mesh at https://gitter.im/gentics/mesh.
-
-In this article we take a look at other communication channels and explain why having a real time chat help us improve our open source product.
+---
+title: Why we've decided to use Gitter and you should do too
+created: 2018-05-01
+author: Bernhard Riegler
+banner: banner.jpg
+teaser: We now have a Gitter room for talking about Gentics Mesh.
+  In this article we take a look at other communication channels and explain why having a real time chat help us improve our open source product.
+---
 
 Since we open sourced our headless CMS in July 2017, we have been managing feature requests and bugs on link:https://github.com/gentics/mesh[github].
 
@@ -34,7 +33,7 @@ Introducing a real time chat tool ...
 
 Mike Bartlett one of the Cofounders of Gitter describes its purpose as follows:
 
-"We built Gitter to help people who make software communicate better."
+_"We built Gitter to help people who make software communicate better."_
 
 This is our main goal - to get you, the community, involved and participate in our vision of a developer friendly headless CMS.
 

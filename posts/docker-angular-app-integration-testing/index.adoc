@@ -1,0 +1,93 @@
+---
+title: Integration Testing of a Dockerized Angular App
+banner: knolling_dark.jpg
+teaser: We use docker to run our Protractor AngularJS integration tests. In this blog post I will explain our setup step by step and show how docker can be used to run tests.
+author: Johannes Schüth
+created: 12-05-2017
+---
+
+== Protractor
+
+We are using the link:http://www.protractortest.org/[Protractor] testing framework in order to test our Gentics Mesh AngularJS Admin UI webapp. Protractor is a great tool for end to end / integration testing of AngularJS Apps since it provides APIs which makes testing those Apps very easy.
+
+Installation: `npm install -g protractor`
+
+== Selenium Node
+
+Protractor uses link:https://hub.docker.com/r/selenium/[Selenium] in order to test the application.
+
+The easiest way to setup a selenium node is to use the link:https://www.npmjs.com/package/webdriver-manager[webdriver-manager] tool but it is also possible to use link:https://hub.docker.com/r/selenium/[selenium docker images].
+
+Installation: `npm install -g webdriver-manager`
+
+Our tests use the link:https://hub.docker.com/r/selenium/standalone-firefox/[Firefox selenium] node but it is also very easy to run tests using chrome.
+
+The command `docker run -d -p 4444:4444 selenium/standalone-firefox` will spawn a new docker container which runs the selenium node.
+
+== Application Under Test
+
+Next we need our AngularJS application. In our case this is link:http://getmesh.io/[Gentics Mesh]. You can start the link:https://hub.docker.com/r/gentics/mesh-demo/[Gentics Mesh Demo Docker Container] via `docker run -p 8080:8080 gentics/mesh-demo`. The started container will run the Gentics Mesh backend server and also serve the admin UI.
+
+== Tests
+
+We have two test cases:
+
+The login test will log in using the default demo credentials and verify that the demo project is being displayed.
+
+`/login-test.js`
+
+The demo test will just access the demo endpoint which displays a simple AngularJS dummy webapp which displays the demo contents.
+
+`/demo-test.js`
+
+Both tests use browser.params in order to access params we specify during protractor startup.
+
+The main protractor configuration file is currently set up to run both tests using firefox.
+
+`/protractor.conf.js`
+
+Finally it is time to execute the protractor tests.
+
+You can run the tests locally using a local selenium node which can be started using the webdriver-manager start command. Once the selenium node and your Gentics Mesh application is ready you can invoke the protractor tests:
+
+Combine all the things
+
+Of course you could now glue ALL the pieces together using <$INSERT_YOUR_TOOL_HERE> here. In our case we use docker-compose and a little bit of bash for this.
+
+I create a link:https://gist.github.com/Jotschi/a7d8b219dee19b037e4dadacc1dcd475[GitHub gist] which contains all sources.
+
+```
+git clone git@gist.github.com:a7d8b219dee19b037e4dadacc1dcd475.git protractor-docker-example
+cd protractor-docker-example
+./test.sh
+```
+
+== docker-compose
+
+Installation: link:https://docs.docker.com/compose/install/[described here]
+
+The /docker-compose.yml file contains three services:
+
+* tester: An image which contains the protractor tests. This will also execute these tests.
+* selenium: The selenium node which will be used by the tester service.
+* mesh: The application which will be tested. The selenium service must be able to access it.
+
+The `entrypoint` value is customized in order to insert a bash script which will block execution until the needed service is ready. The `/api/v1/admin/status` endpoint is polled in order to verify that mesh is ready to accept requests. The selenium hub url is checked in a similar way.
+
+A very simple docker file which adds the protractor configuration and test files to a new image which we will use to run our tests.
+
+/Dockerfile
+
+== Test Runner
+
+The test runner script is used to startup the docker-compose setup and wait until the tests have been executed. The test results will be printed to stdout and the exitcode of protractor will be passed along.
+
+The following script is an adaptation of the test.sh script which was written by Harrison Harnisch. He also wrote an link:https://hharnisc.github.io/2016/06/19/integration-testing-with-docker-compose.html[excellent blog post] on integration testing using docker.
+
+`/test.sh`
+
+Example Output:
+
+Finally all that is needed to do is to hook the test.sh script up to a continuous integration process. We use Jenkins CI and just needed to add another stage to our Jenkinsfile which describes our build pipeline in order to execute the tests. I would also recommend that you use environment variables within your docker-compose.yml file in order to configure and control which version of your App will be started.
+
+link:https://unsplash.com/photos/TtN_obfWlGw[Title Photo] by link:https://unsplash.com/@wesleycaribe[Wesley Caribe] via unsplash.
