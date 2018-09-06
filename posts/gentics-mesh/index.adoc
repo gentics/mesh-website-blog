@@ -1,6 +1,7 @@
 ---
 title: "Gentics Mesh: The Developer-First CMS"
 banner: developer-coffee.jpeg
+date: 2016-03-31T11:26:23Z
 teaser: With the advent of web content management in the early 2000’s a wealth of open- and closed-source products set out to deliver the best possible tool to create and manage websites. 16 years later these products are decked-out with features to aid editors, marketers and product managers to go about their daily business as smooth as possible.
 ---
 

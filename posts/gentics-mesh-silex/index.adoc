@@ -1,7 +1,7 @@
 ---
 title: Building an API-first Web App with Gentics Mesh and the PHP Microframework Silex
 author: Johannes Schüth
-created: Jan 19, 2017
+date: 2017-01-17T14:15:59+01:00
 teaser: Silex is a PHP microframework based on Symfony used to develop small web applications. In this example we use Silex and its basic routing engine with the Twig template engine to read and display the data we read from our API-First CMS Gentics Mesh. And since Mesh provides API Endpoints and manages all the data for us, we can focus on the frontend part. But it also provides us with the opportunity to swap out Silex for a more complex Framework anytime.
 banner: rg07rwkxg6k-lisa-zoe.jpg
 ---

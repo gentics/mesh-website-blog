@@ -3,7 +3,7 @@ title: Getting started with Express and the API-first CMS Gentics Mesh
 banner: express-lane.jpg
 teaser: Fast, unopinionated, minimalist. Express is one of the most popular Node.js frameworks out there. It simplifies routing and handling data. This blogpost is part of a series in which we show you how to combine the API-first CMS Gentics Mesh with popular frameworks, such as Express. Our focus is especially on routing and displaying the content with templates..
 author: Johannes Schüth
-created: Feb 1, 2017
+date: 2017-01-23T10:30:15Z
 ---
 
 Gentics Mesh is the CMS backend for your web applications and apps. It's API-first so you can choose your favorite languages and frameworks. In this blogpost we are going to provide you with an example for getting started with Gentics Mesh and link:http://expressjs.com/[Express] together with the link:https://www.npmjs.com/package/request-promise-any[request-promise library] as well as the link:https://mozilla.github.io/nunjucks/[Nunjucks template engine]. See how easy it is to swap out technologies and check out the exact same link:http://getmesh.io/Blog/Building+an+API-first+Web+App+with+Gentics+Mesh+and+the+PHP+Microframework+Silex[example using the PHP micro-framework Silex together with the Twig template engine].

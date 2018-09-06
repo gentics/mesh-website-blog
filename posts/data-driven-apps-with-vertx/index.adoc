@@ -1,6 +1,6 @@
 ---
 title: Data-driven Apps made easy with Vert.x and Gentics Mesh
-created: Mar 13, 2017
+date: 2017-03-13T12:10:15Z
 author: Andrea Schauerhuber
 banner: thaddaeus-lim-40018.jpg
 summary: We recently contributed an enhancement released in Vert.x 3.4.0 which allows building template-based web apps more easily with Vert.x as part of the frontend stack together with Gentics Mesh in a headless CMS setting.

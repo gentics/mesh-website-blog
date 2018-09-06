@@ -1,11 +1,10 @@
 ---
 title: Meet us at WeAreDevelopers Conference in Vienna
-created: 2018-05-01
+date: 2018-03-26T08:45:52Z
 teaser: APA-IT brings open source headless CMS to WeAreDevelopers Conference
 banner: banner.jpg
 author: Bernhard Riegler
 ---
-
 
 == Meet us at WeAreDevelopers Conference in Vienna
 

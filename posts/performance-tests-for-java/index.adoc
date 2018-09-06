@@ -3,7 +3,7 @@ title: Functional Performance Tests For Java
 banner: typing_dev.jpg
 teaser: How to implement maintainable performance tests using Docker and Java.
 author: Johannes Schüth
-created: 15-04-2017
+date: 2016-06-14T11:06:43Z
 ---
 
 

@@ -2,6 +2,8 @@
 title: REST in Peace - Devoxx Poland 2016
 banner: IMG_20160622_160605.jpg
 teaser: At this year's Devoxx Poland conference we had the chance to talk about creating and maintaining REST APIs on stage. REST APIs are the language of the web. Though simple to build, it's also very easy to mess them up. You might end up with a convoluted API, that's hard to understand and even worse to use. We gave you our ideas about how to create REST APIs that are both comprehensible and maintainable and make your fellow developers happy.
+date: 2016-07-18T07:25:48Z
+youtube: c0nQEwfKlsM
 ---
 
 Slides are available on link:https://speakerdeck.com/cprerovsky/rest-in-peace-number-devoxxpl-2016-talk[Speakerdeck]. If we've missed any points you think are important when creating REST APIs let us know in the comments!

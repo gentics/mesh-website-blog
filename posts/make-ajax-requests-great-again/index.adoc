@@ -1,7 +1,7 @@
 ---
 title: Make AJAX-Requests Great Again
 author: Gregor Vostrak
-created: Feb 9, 2017
+date: 2017-02-08T12:55:01Z
 teaser: AJAX requests are often handled by third party libraries, because of the unpopular native XMLHttpRequest feature in JavaScript. With the Fetch API and ES2017 features like Async/Await this could change now. In this blogpost we show you how to perform AJAX requests to the API-first CMS Gentics Mesh, using the Fetch API and Async/Await with the use of Babel.js.
 banner: dog-fetching-frisbee.jpeg
 ---

@@ -3,7 +3,7 @@ title: Gentics Mesh's Image Manipulation API and Interface
 banner: v6uko9va-18-glenn-carstens-peters.jpg
 teaser: Gentics API-first CMS not only provides you with many features to handle text content very easily, it also makes handling images and image manipulation much easier. In this blog post, we are looking into the image manipulation features, both in the Gentics Mesh user interface and the Gentics Mesh API.
 author: Gregor Vostrak
-created: Jan 26, 2017
+date: 2017-01-25T07:25:42Z
 ---
 
 

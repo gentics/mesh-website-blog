@@ -1,6 +1,6 @@
 ---
 title: Why we've decided to use Gitter and you should do too
-created: 2018-05-01
+date: 2018-03-16T11:54:53Z
 author: Bernhard Riegler
 banner: banner.jpg
 teaser: We now have a Gitter room for talking about Gentics Mesh.

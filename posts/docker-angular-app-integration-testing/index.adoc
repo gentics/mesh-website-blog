@@ -3,7 +3,7 @@ title: Integration Testing of a Dockerized Angular App
 banner: knolling_dark.jpg
 teaser: We use docker to run our Protractor AngularJS integration tests. In this blog post I will explain our setup step by step and show how docker can be used to run tests.
 author: Johannes Schüth
-created: 12-05-2017
+date: 2016-06-22T13:16:54Z
 ---
 
 == Protractor

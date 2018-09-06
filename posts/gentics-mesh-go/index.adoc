@@ -1,7 +1,7 @@
 ---
 title: How to build a website with Go and API-first CMS Gentics Mesh
 author: Simon Tesar
-created: Feb 23, 2017
+date: 2017-02-22T13:57:15Z
 banner: banner.jpg
 teaser: Making it easy to build simple, reliable, and efficient software is and has always been the goal of the Go programming language. This blogpost shows how to develop applications with Go and Gentics Mesh using Gorilla toolkits’ mux router and the GJSON library. As in our previous examples Gentics Mesh is used to manage all the data.
 ---

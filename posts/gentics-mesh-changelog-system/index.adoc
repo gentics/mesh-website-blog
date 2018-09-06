@@ -3,7 +3,7 @@ title: The Gentics Mesh Changelog System
 banner: photo-1457904375453-3e1fc2fc76f4.jpg
 teaser: How are Graph Database changes managed and how can structural changes be applied to a graph database.
 author: Johannes Schüth
-created: 15-01-2017
+date: 2016-04-29T12:21:41+01:00
 ---
 
 In this article I'll explain how Gentics Mesh deals with structural changes to its graph database which may be needed when updating Gentics Mesh. These changes may be required due to new features or bug fixes.
