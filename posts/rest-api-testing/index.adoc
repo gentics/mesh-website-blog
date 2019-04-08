@@ -1,0 +1,58 @@
+---
+title: REST API Testing
+date: 2019-04-08T11:24:53Z
+author: Johannes Schüth
+banner: banner.jpg
+teaser: TBD
+---
+
+In this post I would like to share some insight and ideas on REST API testing.
+
+There are different aproaches on how to actually test APIs.
+
+One way to test your API is to first specify the design and later use a tool to generate the tests.
+
+http://rest-assured.io/
+
+For Gentics Mesh we decided to write our own REST Client and also use this client for all of our tests.
+This way tests can be build independenly and don't relay on the contract being generated.
+Overall this resulted in a flexible workflow which allowed for fast `test->change->test` development cycles.
+
+When writing tests you are often faced with the question what should be tested.
+
+Lets assume you have a very basic API such as:
+
+```
+GET /api/v1/users/
+GET /api/v1/users/:uuid
+DELETE /api/v1/users/:uuid
+POST /api/v1/users
+```
+
+== Concurrent creation
+
+Concurrency test are important to discover multi threading issues.
+
+== Conflict handling
+
+When creating a resource with a unique name it is worth testing that a conflict error `409` is returned when a name is used which already belongs to another resource. 
+
+== Payload validation
+
+The JSON payload of the response should be validated on the server-side. 
+Validation failures 
+
+== Test for missing resources
+
+== Test for bogus uuid's
+
+Loading a wrong non existing resource should result in a `404` error.
+
+
+== Test for idempotency 
+
+Idempotency is important in building a fault-tolerant API. Invoking multiple delete requests for example should not lead to unexpected results. It should be safe to invoke `DELETE`, `PUT`, `HEAD`, `GET`, `OPTIONS` on the same resource.
+
+== Events
+
+Some systems may also handle events. A event could be dispatched after user creation for example.
