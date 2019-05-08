@@ -1,0 +1,31 @@
+---
+title: "Gentics Mesh: Elasticsearch Sync"
+banner: moon.jpeg
+date: 2019-05-08T11:26:23Z
+teaser: TBD
+---
+
+== Goals
+
+== Problems
+
+// Why batching
+
+// Why differential sync
+
+== Solutions
+
+=== Solution #1
+
+// Store journal of documents to be index in graph
+
+=== Solution #2
+
+// Track queue in-memory
+
+=== Solution #3
+
+// Throw and handle events
+
+
+// Syncing 
