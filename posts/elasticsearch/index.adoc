@@ -1,5 +1,5 @@
 ---
-title: "Gentics Mesh: Elasticsearch integration"
+title: "How does Gentics Mesh integrate Elasticsearch?"
 banner: moon.jpeg
 date: 2019-05-08T11:26:23Z
 teaser: We have just finished a major overhaul of our Elasticsearch integration with the release of version 0.32.0. In this blog post I would like to share how we now handle synchronization between Gentics Mesh and Elasticsearch and also which approaches have been used before.
