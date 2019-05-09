@@ -2,7 +2,7 @@
 title: "Gentics Mesh: Elasticsearch integration"
 banner: moon.jpeg
 date: 2019-05-08T11:26:23Z
-teaser: We have just finished a major overhaul of our Elasticsearch integration with the release of Gentics Mesh 0.32.0. In this blog post I would like to share how we now handle synchronization between Gentics Mesh and Elasticsearch and also what approaches have been used before.
+teaser: We have just finished a major overhaul of our Elasticsearch integration with the release of version 0.32.0. In this blog post I would like to share how we now handle synchronization between Gentics Mesh and Elasticsearch and also what approaches have been used before.
 ---
 
 :icons: font
@@ -143,3 +143,6 @@ Failed batch requests will automatically be retried. If too many issues occur Ge
 === Track documents
 
 As mentioned above it is required for the shown sync process to keep a common element id between your source and Elasticsearch. Adding a _version_ id will also help you track changes between both data sets.
+
+
+Image via link:https://unsplash.com/[Unsplash] by link:https://unsplash.com/@marcusdallcol[Marcus Dall Col]
