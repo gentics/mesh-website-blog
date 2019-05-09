@@ -2,16 +2,12 @@
 title: "Gentics Mesh: Elasticsearch Sync"
 banner: moon.jpeg
 date: 2019-05-08T11:26:23Z
-teaser: TBD
+teaser: We have just finished a major overhaul of our Elasticsearch integration with the release of Gentics Mesh 0.32.0. In this blog post I would like to share how we now handle synchronization between Gentics Mesh and Elasticsearch and also what approaches have been used before.
 ---
 
 :icons: font
 :source-highlighter: prettify
 :toc:
-
-== Intro
-
-We have just finished a major overhaul of our Elasticsearch integration with the release of link:https://getmesh.io/docs/changelog/#v0.32.0[Gentics Mesh 0.32.0]. In this blog post I would like to share how we now handle synchronization between Gentics Mesh and Elasticsearch and also what approaches have been used before.
 
 === What needs to be synced?
 
@@ -128,20 +124,17 @@ TIP: Add a linear or exponential back off time to your requests to gradually red
 
 === Event based 
 
-With Gentics Mesh 0.32.0 we updated the Elasticsearch synchronization process. Before, the sync operation was executed directly after the element has been updated. Now this process has been decoupled. The initial update operation will invoke _Events_ which will be picked up by the Elasticsearch integration.
+With Gentics Mesh _0.32.0_ we updated the Elasticsearch synchronization process. Before, the sync operation was executed directly after the element has been updated. Now this process has been decoupled. The initial update operation will invoke _Events_ which will be picked up by the Elasticsearch integration.
 
-The `mesh.group.updated` event for example contains information about the specific group and thus the Elasticsearch integration can run a update of the group document in the background.
+Updating a group will cause the `mesh.group.updated` event to be dispatched. This event will be picked up by our Elasticsearch Event Handler. This handler will create the needed elasticsearch update requests.
+These update requests will be collected in a central queue. Another process will pick items from this queue and create bulk requests. Every two seconds after the last request is received a bulk request is created. Bulk requests are also created when the queue size exceeds the configured limit.
+
+Failed requests will automatically be retried.
+
+Finally an idle event will be dispatched after a certain time of inactivity.
 
 // https://docs.google.com/drawings/d/1jBfAmIgCDw-rgEE5R8qDvr149cGgYUIyB-agNX3FjAU/edit
 image::event-handling.png[Event handling, role="img-responsive"]
-
-
-Every two seconds after the last request is received a bulk request is created. Bulk requests are also created when the queue size exceeds the configured limit.
-
-Requests will be retried if they fail.
-
-An idle event will be dispatched after a certain time of inactivity.
-
 
 === Resilience
 
@@ -149,4 +142,4 @@ Failed batch requests will automatically be retried. If too many issues occur Ge
 
 === Track documents
 
-As mentioned above it is required for the shown sync process to keep a common element id between your source and Elasticsearch. Adding a version id will also help you track changes between both data sets.
+As mentioned above it is required for the shown sync process to keep a common element id between your source and Elasticsearch. Adding a _version_ id will also help you track changes between both data sets.
