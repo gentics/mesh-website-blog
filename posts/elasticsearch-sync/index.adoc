@@ -11,11 +11,11 @@ teaser: TBD
 
 == Intro
 
-We have just finished a major overhaul of our Elasticsearch integration with the release of link:https://getmesh.io/docs/changelog/#v0.32.0[Gentics Mesh 0.32.0]. In this blog post I would like to share we now handle synchronization between Gentics Mesh and Elasticsearch and also what approaches have been used before. 
+We have just finished a major overhaul of our Elasticsearch integration with the release of link:https://getmesh.io/docs/changelog/#v0.32.0[Gentics Mesh 0.32.0]. In this blog post I would like to share how we now handle synchronization between Gentics Mesh and Elasticsearch and also what approaches have been used before.
 
 === What needs to be synced?
 
-In Gentics Mesh we store various elements within a Graph Database like users, roles, groups, content elements, tags. The Graph database is great for storing and loading deeply nested data structures (e.g. tree structures, references between contents, linkages). Searching in text and large datasets however can be best achieved by using a dedicated search index. In the case for Gentics Mesh we choose to integrate Elasticsearch to meet this requirement. 
+In Gentics Mesh we store various elements within a graph database like users, roles, groups, content elements, tags. The graph database is great for storing and loading deeply nested data structures (e.g. tree structures, references between contents, linkages). Searching in text and large datasets however can be best achieved by using a dedicated search index. In the case for Gentics Mesh we choose to integrate Elasticsearch to meet this requirement. 
 
 Before we can sync anything we need to determine what should be synced and how the synced data should be structured.
 
@@ -128,7 +128,7 @@ TIP: Add a linear or exponential back off time to your requests to gradually red
 
 === Event based 
 
-With Gentics Mesh 0.32.0 we updated the Elasticsearch synchronization process. Before the sync operation was executed directly after the element has been updated. Now this process has been decoupled. The initial update operation will invoke _Events_ which will be picked up by the Elasticsearch integration.
+With Gentics Mesh 0.32.0 we updated the Elasticsearch synchronization process. Before, the sync operation was executed directly after the element has been updated. Now this process has been decoupled. The initial update operation will invoke _Events_ which will be picked up by the Elasticsearch integration.
 
 The `mesh.group.updated` event for example contains information about the specific group and thus the Elasticsearch integration can run a update of the group document in the background.
 
@@ -140,7 +140,7 @@ Every two seconds after the last request is received a bulk request is created. 
 
 Requests will be retried if they fail.
 
-An idle event will be dispatched after a certain time of no activity.
+An idle event will be dispatched after a certain time of inactivity.
 
 
 === Resilience
