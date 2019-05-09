@@ -53,10 +53,16 @@ In our case we did not need to store this relationship in the search documents. 
 }
 ----
 
-For us it was very helpful to keep track of these references in a easy to follow chart:
+For us it was very helpful to keep track of these references using a graph:
 
 // https://docs.google.com/drawings/d/1C0FAd3RjYAlU58DNuZd2ghA9p4pGYJBkggNmCYl8X1Y/edit
 image::dependencies.png[Document dependencies, role="img-responsive"]
+
+* Role documents for example don't have any references to other elements. Thus only modifications on roles will affect these documents.
+* Node documents (content elements) for example store the reference to a project. Thus updating the project must also cause the nodes of this project to be updated.
+* Nodes can also be references by each other (via fields). Deleting a referenced node must therefore also update node document which stores this reference.
+* Branches are not added to the search index and thus not relevant for the search integration.
+* Nodes can be tagged. The tags are also stored in the document to be able to search for content elements with a specific tag. Updating the name of a tag will thus also require updates on all nodes documents that reference this tag.
 
 == Tasks
 
