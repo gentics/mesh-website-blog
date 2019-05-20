@@ -1,0 +1,137 @@
+---
+title: 
+banner: 
+teaser: 
+author: Johannes Schüth
+date: 2019-05-20T07:25:42Z
+---
+
+In this blogpost I would like to show how to build a Amazon Alexa Skill server using Vert.x, Dagger and Gentics Mesh.
+
+== The Skill
+
+The Skill which I build showcases how to hook a headless CMS like Gentics Mesh to Amazon Alexa.
+
+== Vert.x Server
+
+For Http request handling and routing I use link:https://vertx.io/[Eclipse Vert.x] since it is light weight and easy to extend and use.
+
+== Dagger
+
+I use link:http://google.github.io/dagger/[Dagger] as the dependency injection framework of my choice.
+
+== Gentics Mesh
+
+The headless CMS Gentics Mesh provides 
+
+== Amazon Alexa
+
+Before you can start with your server you should setup your skill in the link: https://developer.amazon.com/alexa/console/ask[Alexa Skills kit Developer Console].
+
+There are various great guides that explain all the details of the Alexa skill system and I don't even pretend to be one of those.
+
+Let me try to give you a super condensed introduction of the terms and their meaning.
+
+=== Invocation Name
+
+Your skill has an invocation name. This name is used to trigger or activate the skill. A easy to use name should be used. In our case it is _"Gentics"_.
+
+> Alexa, open *Gentics*
+
+> Alexa, ask *Gentics* [...]
+
+=== Intents
+
+The skill can have multiple intents. Intents are similar to functions which will in turn invoke the intent handlers in your alexa skill server.
+
+> Alexa, ask Gentics *whats the price of a Tesla?*
+
+When you define an intent you can actually specify multiple phrases which can be used to trigger the intent.
+
+> Alexa, ask Gentics *how much does a Tesla costs?*
+
+There are also build-in intents which get triggered when the skill is stopped, a user asks for help or when no matching intent could be found (e.g. the question of the user could not be understood).
+
+=== Slots
+
+You can define intent slots which work similar to variables in your intents.
+
+> Alexa, ask Gentics how much does a *<vehicle>* costs?
+
+The alexa service will automatically extract the name of the vehicle and add it to the request which will be send to your skill server.
+
+In the SDK console you can define a slot type for these variables. You can add entries to the slot type to make it easier for the Alexa service to map the intent slots. Additionally you can use slot types to add aliases to names that you were using.
+
+Please note that you don't need to specify all the slot types options. The alexa service will still provide you with mapped intent slots in the request payload.
+
+=== Endpoint
+
+The endpoint section can be used to define the URL on which the Alexa Skill Server can be reached.
+
+== Intents Handlers
+
+All the intents will be combined using the `SkillIntentHandler` class. The handler will redirect any of the requests to the matching intent handler.
+
+=== CancelandStopIntentHandler
+
+Intent handler which gets invoked when canceling or stoping the intent.
+
+> Abort
+
+=== FallbackIntentHandler
+
+Fallback handler which gets invoked when no matching intent could be selected by the Alexa service.
+
+=== GetVehiclePriceIntent  
+
+Custom intent which will identify the selected vehicle and return the stored price.
+
+> What is the price of a Tesla?
+
+=== HelpIntentHandler
+
+Intent handler which returns information about the usage of the intent.
+
+> Help
+
+=== LaunchRequestHandler
+
+Intent handler which gets invoked once the Skill gets launched.
+
+> Open Gentics
+
+=== ReserveVehicleIntent
+
+Custom intent handler which gets invoked when the user wants to reserve a vehicle.
+
+> Reserve a Tesla
+
+=== SessionEndedRequestHandler
+
+Handler which gets invoked once the session ends. Usually used to cleanup sessions etc.
+
+=== StockLevelIntentHandler
+
+Custom intent handler which gets invoked when the stock level of a vehicle should be returned.
+
+> Whats the stock level for Teslas?
+
+
+== Testing
+
+For testing I setup a local port forward in my router to my local development environment. This way the alexa service was able to communicate with my local development server in my IDE.
+
+== Deployment
+
+Once you have build the project using maven you can build a docker image.
+
+```
+FROM java:openjdk-8-jre-alpine
+
+ADD ./target/mesh-alexa-skill*.jar /server.jar
+
+CMD ["java", "-jar", "server.jar"]
+```
+
+== Conclusion
+
