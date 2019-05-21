@@ -1,30 +1,22 @@
 ---
-title: 
-banner: 
-teaser: 
+title: Voice Enabled Content
+banner: echo-dot-header.jpeg
+teaser: In this blogpost I would like to show how to build a Amazon Alexa Skill server using Vert.x, Dagger and Gentics Mesh.
 author: Johannes Schüth
 date: 2019-05-20T07:25:42Z
 ---
 
-In this blogpost I would like to show how to build a Amazon Alexa Skill server using Vert.x, Dagger and Gentics Mesh.
+:icons: font
+:source-highlighter: prettify
+:toc:
 
 == The Skill
 
 The Skill which I build showcases how to hook a headless CMS like Gentics Mesh to Amazon Alexa.
 
-== Vert.x Server
-
-For Http request handling and routing I use link:https://vertx.io/[Eclipse Vert.x] since it is light weight and easy to extend and use.
-
-== Dagger
-
-I use link:http://google.github.io/dagger/[Dagger] as the dependency injection framework of my choice.
-
-== Gentics Mesh
-
-The headless CMS Gentics Mesh provides 
-
 == Amazon Alexa
+
+image::alexa.jpeg[Echo Dot, role="img-responsive"]
 
 Before you can start with your server you should setup your skill in the link: https://developer.amazon.com/alexa/console/ask[Alexa Skills kit Developer Console].
 
@@ -116,6 +108,69 @@ Custom intent handler which gets invoked when the stock level of a vehicle shoul
 
 > Whats the stock level for Teslas?
 
+== Building the Skill Server
+
+== Dagger
+
+I use link:http://google.github.io/dagger/[Dagger] as the dependency injection framework of my choice.
+
+The link:https://github.com/gentics/mesh-alexa-skill/blob/9beb7d57be153077456aff3ea34896debbd501fe/src/main/java/com/gentics/mesh/alexa/GenticsSkill.java#L28[main] method contains the code which prepares the dagger dependency graph.
+
+Initially a `SkillConfig` configuration POJO will be created. This configuration will be provided to the dagger builder in order to make it injectable.
+
+[source,java]
+----
+SkillConfig config = new SkillConfig();
+applyEnv(config);
+AppComponent app = DaggerAppComponent.builder().config(config).build();
+app.skill().run();
+----
+
+== Vert.x Server
+
+For Http request handling and routing I use link:https://vertx.io/[Eclipse Vert.x] since it is light weight and easy to extend and use. The `link:https://github.com/gentics/mesh-alexa-skill/blob/master/src/main/java/com/gentics/mesh/alexa/server/SkillServerVerticle.java[SkillServerVerticle]` contains the server, routes and handlers.
+
+[source,java]
+----
+router.route("/alexa").handler(rh -> {
+	JsonObject json = rh.getBodyAsJson();
+	try {
+		intentHandler.handleRequest(json, sr -> {
+			Buffer buffer = Buffer.buffer(sr.getRawResponse());
+			rh.response().end(buffer);
+		});
+	} catch (IOException e) {
+		rh.fail(e);
+	}
+});
+----
+
+== I18N
+
+link:https://github.com/gentics/mesh-alexa-skill/tree/master/src/main/resources/i18n[Resource bundles] have been added to the project in order to make the skill support multiple languages.
+
+The link:https://github.com/gentics/mesh-alexa-skill/blob/master/src/main/java/com/gentics/mesh/alexa/util/I18NUtil.java[I18NUtil] handles the i18n lookup. 
+
+Each Alexa API request provides the `HandlerInput` which contains information about the local that has been configured for the client which uses the skill.
+
+[source,java]
+----
+protected Locale getLocale(HandlerInput input) {
+	String localeStr = input.getRequest().getLocale();
+	Locale locale = Locale.forLanguageTag(localeStr);
+	return locale;
+}
+----
+
+Finally the local can be used to get the translation.
+
+[source,java]
+----
+String speechText = i18n(locale, "vehicle_not_found");
+----
+
+== Gentics Mesh
+
 
 == Testing
 
@@ -134,4 +189,8 @@ CMD ["java", "-jar", "server.jar"]
 ```
 
 == Conclusion
+
+
+Title photo by link:https://unsplash.com/photos/tsBropDpnwE[Andres Urena] via link:https://unsplash.com/[unsplash].
+Echo dot photo by link:https://unsplash.com/photos/bifCXiN5rdY[Jan Antonin Kolar] via link:https://unsplash.com/[unsplash].
 
