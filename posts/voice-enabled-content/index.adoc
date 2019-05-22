@@ -10,6 +10,24 @@ date: 2019-05-20T07:25:42Z
 :source-highlighter: prettify
 :toc:
 
+== The Goal
+
+The goal of this small project was to create a custom Amazon Alexa Skill. A skill is a way to extend the functionality of Amazon Alexa by defining a custom interaction model and an endpoint to which the Amazon Services can connect to.
+
+The skill itself is very simple. It will allow the user to connect to a small vehicle store and query information about prices and stock levels.
+
+`Alexa, ask Gentics whats the price of a Tesla?`
+
+`Alexa, ask Gentics whats the stock level of Tesla?`
+
+*Components*:
+
+* Interaction Model - The model defines what kind of sentences trigger which code in our server
+* HTTP Server - A server which runs the handlers. I use Vert.x for this.
+* Handlers for intents - The server needs to have some handlers which will be triggered by the alexa service
+* I18N mechanism - The skill should be usable in multiple languages
+* Glue - To combine all code pieces I use dagger which is a dependency injection framework
+
 == The Skill
 
 The Skill which I build showcases how to hook a headless CMS like Gentics Mesh to Amazon Alexa.
@@ -28,19 +46,19 @@ Let me try to give you a super condensed introduction of the terms and their mea
 
 Your skill has an invocation name. This name is used to trigger or activate the skill. A easy to use name should be used. In our case it is _"Gentics"_.
 
-> Alexa, open *Gentics*
+`"Alexa, open *Gentics*"`
 
-> Alexa, ask *Gentics* [...]
+`"Alexa, ask *Gentics* [...]"`
 
 === Intents
 
 The skill can have multiple intents. Intents are similar to functions which will in turn invoke the intent handlers in your alexa skill server.
 
-> Alexa, ask Gentics *whats the price of a Tesla?*
+`Alexa, ask Gentics *whats the price of a Tesla?*`
 
 When you define an intent you can actually specify multiple phrases which can be used to trigger the intent.
 
-> Alexa, ask Gentics *how much does a Tesla costs?*
+`Alexa, ask Gentics *how much does a Tesla costs?*`
 
 There are also build-in intents which get triggered when the skill is stopped, a user asks for help or when no matching intent could be found (e.g. the question of the user could not be understood).
 
@@ -48,7 +66,7 @@ There are also build-in intents which get triggered when the skill is stopped, a
 
 You can define intent slots which work similar to variables in your intents.
 
-> Alexa, ask Gentics how much does a *<vehicle>* costs?
+`Alexa, ask Gentics how much does a *<vehicle>* costs?`
 
 The alexa service will automatically extract the name of the vehicle and add it to the request which will be send to your skill server.
 
@@ -68,7 +86,7 @@ All the intents will be combined using the `SkillIntentHandler` class. The handl
 
 Intent handler which gets invoked when canceling or stoping the intent.
 
-> Abort
+`Abort`
 
 === FallbackIntentHandler
 
@@ -78,25 +96,25 @@ Fallback handler which gets invoked when no matching intent could be selected by
 
 Custom intent which will identify the selected vehicle and return the stored price.
 
-> What is the price of a Tesla?
+`What is the price of a Tesla?`
 
 === HelpIntentHandler
 
 Intent handler which returns information about the usage of the intent.
 
-> Help
+`Help`
 
 === LaunchRequestHandler
 
 Intent handler which gets invoked once the Skill gets launched.
 
-> Open Gentics
+`Open Gentics`
 
 === ReserveVehicleIntent
 
 Custom intent handler which gets invoked when the user wants to reserve a vehicle.
 
-> Reserve a Tesla
+`Reserve a Tesla`
 
 === SessionEndedRequestHandler
 
@@ -106,7 +124,7 @@ Handler which gets invoked once the session ends. Usually used to cleanup sessio
 
 Custom intent handler which gets invoked when the stock level of a vehicle should be returned.
 
-> Whats the stock level for Teslas?
+`Whats the stock level for Teslas?`
 
 == Building the Skill Server
 
