@@ -6,6 +6,11 @@ teaser: Silex is a PHP microframework based on Symfony used to develop small web
 banner: rg07rwkxg6k-lisa-zoe.jpg
 ---
 
+== Silex End Of Life
+
+> Silex has link:https://symfony.com/blog/the-end-of-silex[reached the EOL] and is no longer being developed. The example in the blogpost should thus no longer be used. The mentioned example has been archived. A good alternative for Silex would be Symfony. We have however not yet created example on how to connect symfony with Gentics Mesh.
+
+
 
 In this blogpost we would like to show you how easy it is to use Gentics Mesh in combination with link:http://silex.sensiolabs.org/[Silex], a microframework for PHP.
 
