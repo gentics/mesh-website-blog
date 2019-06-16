@@ -255,41 +255,32 @@ public Single<String> loadStockLevel(Locale locale, String vehicleName) {
 The project itself will be build using maven. 
 
 .Building the project
-```
+[source,bash]
+----
 ./mvnw clean package -DskipTests
-```
+----
 
 Once the shaded jar which contains all the dependencies has been geneated it can be added to a docker image.
 
 .Dockerfile
-```
+[source,bash]
+----
 FROM java:openjdk-8-jre-alpine
 ADD ./target/mesh-alexa-skill*.jar /server.jar
 CMD ["java", "-jar", "server.jar"]
-```
+----
 
 .Building the image
-```
+[source,bash]
+----
 docker build -t gentics/mesh-alexa-skill-demo:latest .
-```
+----
 
 == Testing
 
 Testing the skill server can be a bit tricky since it must be accessible from the Alexa services via HTTPs.
 
 I setup a local port forward in my router to my local development environment. This way the Alexa service was able to communicate with my development server in my IDE. In my case I also setup a reverse proxy via docker and link:https://traefik.io/[traefik] which handles SSL but I think you could also use a snakeoil certificate instead. This has however to be configured in the developer console. 
-
-== Deployment
-
-Once you have build the project using maven you can build a docker image.
-
-```
-FROM java:openjdk-8-jre-alpine
-
-ADD ./target/mesh-alexa-skill*.jar /server.jar
-
-CMD ["java", "-jar", "server.jar"]
-```
 
 == Native Image (optional)
 
