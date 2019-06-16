@@ -3,7 +3,7 @@ title: Creating an Alexa Skill Server with Vert.x
 banner: echo-dot-header.jpeg
 teaser: In this blogpost I would like to share how I build an Amazon Alexa Skill server using Vert.x, Dagger and Gentics Mesh.
 author: Johannes Schüth
-date: 2019-05-20T07:25:42Z
+date: 2019-06-16T15:25:42Z
 ---
 
 :icons: font
