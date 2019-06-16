@@ -60,6 +60,10 @@ There are also build-in intents which get triggered when the skill is stopped, a
 
 image::developer-console.jpeg[Developer Console, role="img-responsive"]
 
+The *interaction model* can also be imported and edited via the JSON Editor in the developer console.
+
+I exported the model for german and english language. You can use the link:https://github.com/gentics/mesh-alexa-skill/tree/master/model[JSON files] to setup your skill or create a new interaction model from scatch.
+
 === Slots
 
 You can define intent slots which work similar to variables in your intents.
