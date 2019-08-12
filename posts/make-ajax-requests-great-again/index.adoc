@@ -66,7 +66,7 @@ Feel free to drop a comment if you have and questions or feedback about the show
 In addition to this blogpost we highly recommend the following resources:
 
 * The link:https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API[Fetch API on the Mozilla Developer Network]
-* Another link:https://getmesh.io/Blog/window.fetch%20JavaScript%20polyfill[window.fetch JavaScript polyfill]
+* Another window.fetch JavaScript polyfill
 * And a fork of the above fetch polyfill allowing for IE8 support also available as link:https://www.npmjs.com/package/fetch-ie8[node package].
 * link:https://jakearchibald.com/2015/thats-so-fetch/[That's so fetch] by Jake Archibald
 
