@@ -7,6 +7,10 @@ banner: banner-laptop.jpg
 banner_credit: Greg Rosenke
 ---
 
+:icons: font
+:source-highlighter: prettify
+:toc:
+
 [.blogpost-img]
 image:gatsby_mesh.png[title="Gatsby + Gentics Mesh"]
 
