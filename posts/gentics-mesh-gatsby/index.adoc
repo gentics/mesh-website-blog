@@ -1,7 +1,7 @@
 ---
 title: Gentics Mesh with Gatsby
 author: Johannes Schüth
-date: 2019-08-08T12:55:01Z
+date: 2019-10-04T12:55:01Z
 teaser: Learn how to build blazing fast websites and apps with Gatsby and Gentics Mesh.
 banner: banner-laptop.jpg
 banner_credit: Greg Rosenke
