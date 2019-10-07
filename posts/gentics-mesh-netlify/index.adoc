@@ -1,7 +1,7 @@
 ---
 title: How to integrate Gentics Mesh with Netlify
 author: Johannes Schüth
-date: 2019-10-07T09:55:01Z
+date: 2019-10-06T09:55:01Z
 teaser: We have added Netlify support to Gentics Mesh via the Gentics Mesh Netlify Integration Plugin.
 banner: banner.jpg
 banner_credit: Samuel Zeller
