@@ -1,0 +1,91 @@
+---
+title: How to integrate Gentics Mesh with Netlify
+author: Johannes Schüth
+date: 2019-10-07T09:55:01Z
+teaser: We have added Netlify support to Gentics Mesh via the Gentics Mesh Netlify Integration Plugin.
+banner: banner.jpg
+banner_credit: Samuel Zeller
+---
+
+[.blogpost-img]
+image:netlify-logo.png[title="Netlify"]
+
+Netlify is an application delivery network combined with a continuous deployment toolchain that you can use to build and host your static website for free. By using our link:https://github.com/gentics/mesh-netlify-plugin[Gentics Mesh Netlify Integration Plugin] you can use Gentics Mesh to edit your content and have your static website updated automatically.
+
+If you're new to Netlify or the JAMstack in general, you can find a good introduction at the link:https://jamstack.org/[JAMstack website,window=_blank]. In one sentence, this plugin allows you to use Gentics Mesh as a CMS for creating your content and publishing it without the need for a webserver.
+
+The plugin is fully link:https://github.com/gentics/mesh-netlify-plugin[open source].
+
+== Usage
+
+=== Prerequisites
+
+This tutorial expects that you already have a working Netlify-powered site, that is connected to your git provider and has configured the build commands correctly. It is also a requirement that your Gentics Mesh installation is reachable from the Netlify servers.
+
+When adding this plugin to your Mesh installation, it will register to the publish, delete and unpublish events. The plugin will then trigger the configured webhooks to rebuild your site.
+
+=== Configuring Netlify
+
+To use the plugin you need to first setup a _build hook_ which can be added in the `Build & Deploy -> Continuous Deployment` section of your Netlify site.
+
+The Gentics Mesh plugin needs this token to trigger the build process for your site.
+
+=== Configuring Gentics Mesh
+
+
+The `plugins/netlify/config.yml` file will be created during startup of the plugin. It contains information about netlify hooks.
+
+.plugins/netlify/config.yml
+[source,json]
+----
+---
+hooks:
+- id: "5d544baaf196f9c20c979fba"
+  projects:
+  - "test0"
+----
+
+
+Each hook can also contain a list of projects for which it is active. The hook will only be triggered for projects which match up with the project of the content that triggered the event.
+
+Omitting the projects list will create a global hook which will be triggered regardless of the project origin of the event.
+
+=== Plugin API
+
+Hooks can also be added / listed / updated / removed during runtime via the REST endpoints. Changing the hooks will automatically update the configuration file.
+
+The API can only accessed with admin role permissions.
+
+**Return list of all hooks**
+
+`GET /api/v2/plugins/netlify/hooks`
+
+**Load a single hook**
+
+`GET /api/v2/plugins/netlify/hooks/:hookId`
+
+**Register new hook**
+
+[source,json]
+----
+POST /api/v2/plugins/netlify/hooks
+
+{
+    "id": "5d544baaf196f9c20c979fba",
+    "triggerBranch": null,
+    "projects": [
+        "test0"
+    ]
+}
+----
+
+**Delete registered hook**
+
+`DELETE /api/v2/plugins/netlify/hooks/:hookId`
+
+
+== Summary
+
+With this plugin, you can modify content in Gentics Mesh, and whenever you publish or unpublish content, your Netlify-powered website will be updated automatically.
+
+Photo by link:https://unsplash.com/@samuelzeller?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText[Samuel Zeller] on link:https://unsplash.com?utm_medium=referral&utm_content=creditCopyText[Unsplash]
