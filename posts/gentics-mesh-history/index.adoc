@@ -89,4 +89,4 @@ image::gentics-mesh-ui.png[Screenshot of the Gentics Mesh user interface,role="i
 
 ### The future
 
-Who knows what the future brings... To never miss a cool new feature, link:#newsletter[subscribe to our newsletter] or link:om/genticsmesh[follow us on twitter]!
+Who knows what the future brings... To never miss a cool new feature, link:#newsletter[subscribe to our newsletter] or link:https://twitter.com/genticsmesh[follow us on twitter]!
