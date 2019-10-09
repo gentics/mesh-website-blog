@@ -4,7 +4,7 @@ banner: auchan-drive-lille.jpg
 banner_credit: Auchan Retail France
 teaser: Auchan successfully replaced 3 SAP C/4HANA based e-commerce solutions to high-performance application based on Gentics Mesh
 author: Philipp Gortan
-date: 2019-10-09T06:30:00Z
+date: 2019-10-09T04:55:01Z
 ---
 :C: Clément
 :CS: {C} Schockaert
