@@ -1,35 +1,34 @@
 ---
-title: How Eurogast built 15 webshops in no time
+title: How Eurogast Österreich built 15 webshops in no time
 banner: eurogast-wine.jpg
 banner_credit: Alex Gretter, Eurogast Österreich
-teaser: Eurogast successfully launched 15 webshops within a short timeframe thanks to the multi-tenant capabilities of Gentics Mesh
+teaser: Eurogast Österreich successfully launched 15 webshops within a short timeframe thanks to the multi-tenant capabilities of Gentics Mesh
 author: Philipp Gortan
 date: 2019-10-08T09:30:00Z
 ---
 :JG: Johannes Geiger
 :KR: Karl Regensburger
 :PG: Philipp Gortan
-:EG: Eurogast
 :EGO: Eurogast Österreich
 :figure-caption!:
 
-== {EG} runs 15 Mesh-based webshops
+== {EGO} runs 15 Mesh-based webshops
 
 [.question]
 *Philipp:* Could you please introduce yourselves and the company you work for?
 
-*Johannes:* I’m with {EG} since the beginning of this year. I started in the ERP team but during the upcoming months I take over the lead for our B2B e-commerce solutions from Karl.
+*Johannes:* I’m with {EGO} since the beginning of this year. I started in the ERP team but during the upcoming months I take over the lead for our B2B e-commerce solutions from Karl.
 
-*Karl:* I joined {EG} in 2016, at a time where the company decided to found an IT department. Currently, I am the project manager for all our B2B e-commerce solutions including our webshop and handheld device called Best.Friend, which is basically a portable scanner used by customers in restaurants, hotels and canteens.
+*Karl:* I joined {EGO} in 2016, at a time where the company decided to found an IT department. Currently, I am the project manager for all our B2B e-commerce solutions including our webshop and handheld device called Best.Friend, which is basically a portable scanner used by customers in restaurants, hotels and canteens.
 
 image::eurogast-geiger-regensburger.jpg[{JG} and {KR}, role="img-responsive"]
 
-{EG} is in the groceries wholesale business (like Metro, Transgourmet, AGM), but unlike the others it is formed by eleven independent wholesale companies that have combined their forces in purchasing, marketing and recently, also in IT. Amongst other things our IT department is responsible for the B2B e-commerce solutions we provide for our eleven members.
+{EGO} is in the groceries wholesale business (like Metro, Transgourmet, AGM), but unlike the others it is formed by eleven independent wholesale companies that have combined their forces in purchasing, marketing and recently, also in IT. Amongst other things our IT department is responsible for the B2B e-commerce solutions we provide for our eleven members.
 
-{EG} started having a webshop in early 2000 and the first solution was used for an incredible timespan of almost 15 years. However, five years ago _{EGO}_ decided to bring the shop up-to-date regarding design and user experience on mobile devices. Back then, {EG} switched to a solution based on Magento Enterprise. Unfortunately, changes in the licensing policies forced us to look for a more cost efficient solution about two years ago. In 2018, our software evaluation ultimately lead us to a custom webshop solution following a best-of-breed approach while relying on a well-known container platform.
+{EGO} started having a webshop in early 2000 and the first solution was used for an incredible timespan of almost 15 years. However, five years ago _{EGO}_ decided to bring the shop up-to-date regarding design and user experience on mobile devices. Back then, {EGO} switched to a solution based on Magento Enterprise. Unfortunately, changes in the licensing policies forced us to look for a more cost efficient solution about two years ago. In 2018, our software evaluation ultimately lead us to a custom webshop solution following a best-of-breed approach while relying on a well-known container platform.
 
-.{EG} website on multiple devices and the {EG} Best.Friend (© istockphoto.com/mactrunk)
-image::eurogast-multiple-devices.jpg[role="img-responsive"]
+."Eurogast Best.Friend"
+image::eurogast-bestfriend.jpg[height=400, align=center]
 
 
 [.question]
@@ -39,13 +38,12 @@ image::eurogast-multiple-devices.jpg[role="img-responsive"]
 
 In contrast, in the Magento CMS you have one large input field where you can enter anything, including Javascript or HTML code, potentially leading to a broken site. We wanted a solution where the content team *neither needs HTML nor CSS skills*.
 
-Furthermore, the necessity to push the same content onto multiple current and future channels, e.g. the *webshop* that represents the website for each {EG} member -- and who knows what else may be coming -- made it clear that the CMS must not define the layout of the content, but that it needs to be independent and different for each channel.
+Furthermore, the necessity to push the same content onto multiple current and future channels, e.g. the *webshop* that represents the website for each {EGO} member -- and who knows what else may be coming -- made it clear that the CMS must not define the layout of the content, but that it needs to be independent and different for each channel.
 
 As a result, in February 2019 different headless CMS solutions where evaluated. As there was little to no budget at hand for the CMS, only *open source* options were considered.
 
-[link=https://eurogast.at/,window=_blank]
-.Screenshot eurogast.at
-image::eurogast-screenshot.jpg[Screeshot eurogast.at, role="img-responsive"]
+.Screenshot Eurogast Interex
+image::interex-screenshot.png[Screeshot, role="img-responsive"]
 
 
 [.question]
