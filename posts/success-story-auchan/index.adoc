@@ -74,10 +74,10 @@ image::auchan-screenshot.png[role="img-responsive"]
 [quote, {CS}]
 I don’t remember having found any serious competition to Gentics Mesh that would meet our requirements.
 
-Besides Gentics Mesh, we looked at the commercial Craft CMS, but quickly decided to go with Gentics Mesh: Craft CMS lacked the documentation comparable with Gentics Mesh’s API developer documentation. You know, as a developer I don’t like losing time and getting the grasp of it in the first few minutes is crucial to me. In less than 1 hour I understood how Gentics Mesh worked -- and this was not the case with Craft CMS -- so we decided to use Gentics Mesh.
+Besides Gentics Mesh, we looked at the commercial Craft CMS, but quickly decided to go with Gentics Mesh: Craft CMS lacked the documentation comparable with Gentics Mesh’s API developer documentation. You know, as a developer I don’t like losing time and getting the grasp of it in the first few minutes is crucial to me. In less than 1 hour I understood how Gentics Mesh works -- and this was not the case with Craft CMS -- so we decided to use Gentics Mesh.
 
 [quote, {CS}]
-In less than 1 hour I understood how Gentics Mesh worked.
+In less than 1 hour I understood how Gentics Mesh works.
 
 Gentics Mesh was in _beta_ when we started the project -- and even when we went live -- but we were ready to take the risk. It’s now an almost stable solution -- as long as we don’t update production right after every release :-)
 
