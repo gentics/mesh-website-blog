@@ -1,4 +1,4 @@
----
+y---
 title: Building a museum website from scratch
 author: Johannes Schüth
 date: 2019-10-10T08:55:01Z
@@ -48,11 +48,11 @@ Once the model and content has been created it is possible to load data via a si
 ++++
 <div class="graphql-example" data-url="https://musetech.getmesh.io/api/v2/musetech/graphql" style="height: 40em">
 <div id="query">
-query Exhibition($path: String) {
+query Exhibit($path: String) {
     node(path: $path) {
       uuid
       path
-      ... on Exhibition {
+      ... on Exhibit {
         fields {
           name
           description
@@ -91,7 +91,7 @@ query Exhibition($path: String) {
   }
   </div>
   <div id="variables">
-  {"path": "/exhibitions/24E:en"}
+  {"path": "/exhibits/24E:en"}
   </div>
 </div>
 ++++
@@ -111,7 +111,7 @@ I knew I wanted to present the most important information on the start page. For
 
 Other aspects I wanted to add:
 
-* exhibition overview and detail page
+* exhibit overview and detail page
 * a set of basic pages (welcome, history, about, imprint, pricing)
 * A "screen" area shows the available digital signage. For demo purposes this is accessible via the navigation.
 
@@ -156,8 +156,8 @@ function LanguageContent({ match }) {
   return (
     <LanguageContext.Provider value={lang}>
       <Switch>
-        <Route exact path="/:lang(en|de)/exhibitions" component={ExhibitionsList} />
-        <Route exact path="/:lang(en|de)/exhibitions/:id" component={ExhibitionView} />
+        <Route exact path="/:lang(en|de)/exhibits" component={ExhibitsList} />
+        <Route exact path="/:lang(en|de)/exhibits/:id" component={ExhibitView} />
         <Route exact path="/:lang(en|de)/player/:id" component={ExhibitPlayer} />
 
         <Route path="/:lang(en|de)/screens/" exact component={ScreenList} />
@@ -401,7 +401,7 @@ MESH_HTTP_CORS_ORIGIN_PATTERN="https://musetech.getmesh.io|http://localhost:3000
 
 === Search
 
-The exhibition list also features a basic search. Under the hood link:https://www.elastic.co/[Elasticsearch] will be used to run a server-side search for the entered query term. In this demo only the `name` field of the exhibits will be searchable.
+The exhibit list also features a basic search. Under the hood link:https://www.elastic.co/[Elasticsearch] will be used to run a server-side search for the entered query term. In this demo only the `name` field of the exhibits will be searchable.
 
 Adding the search was very easy: A dedicated state was added to store the entered query. The input field updates the query term whenever the `onChange` event got triggered.
 
@@ -413,14 +413,14 @@ const [searchInput, setSearchInput] = useState();
 <input type="text" placeholder="Filter" onChange={({ target: { value } }) => setSearchInput({ query: value })} />
 ```
 
-When the `searchInput` changes, the effect hook gets triggered which will in turn run a GraphQL query via `filterExhibitions` when a query term is present.
+When the `searchInput` changes, the effect hook gets triggered which will in turn run a GraphQL query via `filterExhibits` when a query term is present.
 
 ```
 useEffect(() => {
   if (searchInput && searchInput.query !== "") {
-    filterExhibitions(lang, searchInput.query).then(setNodeResponse);
+    filterExhibits(lang, searchInput.query).then(setNodeResponse);
   } else {
-    getExhibitions(lang).then(setNodeResponse);
+    getExhibits(lang).then(setNodeResponse);
   }
 }, [lang, searchInput]);
 ```
@@ -428,10 +428,10 @@ useEffect(() => {
 In Gentics Mesh, Elasticsearch queries can be run via the GraphQL nodes `query` argument:
 
 ```
-export async function filterExhibitions(lang, term) {
+export async function filterExhibits(lang, term) {
   let query = JSON.stringify(createESQuery(term));
   return graphQl(`
-  query Exhibitions($lang: [String], $query: String) {
+  query Exhibits($lang: [String], $query: String) {
     nodes(lang: $lang, query: $query) {
 
     …
@@ -441,7 +441,7 @@ export async function filterExhibitions(lang, term) {
 
 ```
 
-The used query is simple. We want to find all nodes which were created using the `Exhibition` schema and which also match the given term for the `fields.name` field.
+The used query is simple. We want to find all nodes which were created using the `Exhibit` schema and which also match the given term for the `fields.name` field.
 
 NOTE: By default Gentics Mesh already provides some basic Elasticsearch mappings. Strings for example will automatically be index using a trigram analyzer. This is also the reason why the search only returns results after at least three characters. Analyzers, Filters, Stopwords and custom mappings can be configured if wanted to provide very fine control on search behaviour.
 
@@ -460,7 +460,7 @@ function createESQuery(term) {
         "must": [
           {
             "match": {
-              "schema.name.raw": "Exhibition"
+              "schema.name.raw": "Exhibit"
             }
           },
           {
@@ -522,15 +522,15 @@ docker-compose build
 === Models
 
 The page should contain a few typical museum site features and explorable information.
-I knew I wanted a list of exhibitions, an audio guide and present information which are typical in a museum domain.
+I knew I wanted a list of exhibits, an audio guide and present information which are typical in a museum domain.
 
 image::domain-model.svg[width=700,align="center"]
 
 I ended up creating a few schemas for various content elements. Lets take a look at a few of them.
 
-==== Exhibition
+==== Exhibit
 
-The exhibition model is one of the major parts of the demo. It is used to create exhibition content elements which are part of the exhibition inventory. A exhibit element should provide:
+The exhibit model is one of the major parts of the demo. It is used to create Exhibit content elements which are part of the exhibit inventory. A exhibit element should provide:
 
 * Translatable name, description
 * Text for the audio guide / References to related audio guide tracks
@@ -540,7 +540,7 @@ The exhibition model is one of the major parts of the demo. It is used to create
 
 image::exhibition-model.svg[width=500,align="center"]
 
-The _Curator_, _Audio_, _Video_ are dedicated schemas for elements which will just be referenced to the exhibition.
+The _Curator_, _Audio_, _Video_ are dedicated schemas for elements which will just be referenced to the exhibit.
 
 The _Location_ is a microschema. Those schemas can be used to model nested content elements that are part of the main content element.
 
@@ -554,7 +554,7 @@ The demo front-end also contains a Digital Signage area. To provide content for 
 
 The `Screen` schema will be used to model a specific screen. Each screen displays a set of `contents`. There are two different types of contents:
 
-* The _ScreenExhibitionPromo_ is used to promote a specific exhibition.
+* The _ScreenExhibitPromo_ is used to promote a specific exhibit.
 * The _ScreenEvent_ is used promote a specific event which will take place.
 
 image::screen-model.svg[width=500,align="center"]
@@ -582,7 +582,7 @@ image::exhibition-cms.png[width=500,align="center"]
 
 For the audio guides I used link:https://cloud.google.com/text-to-speech/[Google Cloud Text-to-Speech].
 
-The `importer` project contains the `AudioGeneratorRunner` class which uses the google API to transform the description text of the exhibitions into `wav` files. The generator is setup to create audio files for both languages.
+The `importer` project contains the `AudioGeneratorRunner` class which uses the google API to transform the description text of the exhibits into `wav` files. The generator is setup to create audio files for both languages.
 
 NOTE: A valid API token is needed to use the Google API.
 
@@ -604,8 +604,8 @@ The importer executes the following tasks:
 * Create *project*
 * Create *microschemas* and assign microschemas to project
 * Create *schemas* and assign schemas to project
-* Create basic *folder structure* in the project (e.g. Folders for images, videos, Exhibitions)
-* Create the *contents* (e.g. Exhibitions, Videos, Images, Audio Guides, Screens, Pages)
+* Create basic *folder structure* in the project (e.g. Folders for images, videos, exhibits)
+* Create the *contents* (e.g. Exhibits, Videos, Images, Audio Guides, Screens, Pages)
 * Finally grant anonymous *read permissions* to all content so that the read-only data can be loaded without the need of a JWT.
 
 The importer itself has a data directory which contains a set of folders and JSON files which contain information about the content. Schemas and microschemas are plain JSON files which contain information about the structure of the content.
