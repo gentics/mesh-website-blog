@@ -134,6 +134,7 @@ We are already tracking other areas which can be improved to further increase re
 * link:https://github.com/gentics/mesh/issues/815[#815 - ETag performance]
 * link:https://github.com/gentics/mesh-incubator/issues/233[#233 - Supernode removal]
 * link:https://github.com/gentics/mesh-incubator/issues/213[#213 - Optimize JSON encode handling]
+* link:https://github.com/gentics/mesh-incubator/issues/149[#149 - Use streaming API for JSON]
 
 == Like what you heard?
 
